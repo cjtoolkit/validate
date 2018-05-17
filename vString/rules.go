@@ -109,11 +109,3 @@ func OverrideErrorMsg(validationError vError.ValidationError, rules ...Validatio
 		return nil
 	}
 }
-
-func OverrideValue(overrideValue string) ValidationRule {
-	return func(value *string, hasError bool) error {
-		*value = overrideValue
-
-		return nil
-	}
-}
