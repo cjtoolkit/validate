@@ -50,7 +50,7 @@ func (e *ErrorCollector) Collect(err error) {
 func (e *ErrorCollector) HasError() bool { return e.hasError }
 
 func (e *ErrorCollector) GetErrors() error {
-	if len(e.errs) == 0 {
+	if !e.hasError {
 		return nil
 	}
 
