@@ -12,7 +12,7 @@ func Mandatory() ValidationRule {
 		if "" == *value {
 			return vError.ValidationError{
 				Data:   nil,
-				Format: "Must not be left empty",
+				Format: MandatoryFormat,
 			}
 		}
 
