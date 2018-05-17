@@ -1,0 +1,39 @@
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.so
+
+# Folders
+_obj
+_test
+.config
+
+# Architecture specific extensions/prefixes
+*.[568vq]
+[568vq].out
+
+*.cgo1.go
+*.cgo2.c
+_cgo_defun.c
+_cgo_gotypes.go
+_cgo_export.*
+
+_testmain.go
+
+*.exe
+
+.idea
+.glide
+.vscode
+
+/web_backend/asset/live/
+/web_backend/asset/.sass-cache/
+/web_backend/asset/dev/stylesheets/
+/web_backend/asset/node_modules/
+
+/web_frontend/asset/live/
+/web_frontend/asset/.sass-cache/
+/web_frontend/asset/dev/stylesheets/
+/web_frontend/asset/node_modules/
+
+/vendor/
