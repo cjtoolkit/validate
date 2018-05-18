@@ -84,6 +84,17 @@ func MaxRune(max int) ValidationRule {
 	}
 }
 
+func BetweenRune(min, max int) ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type: Type,
+		Data: map[string]interface{}{
+			"min": min,
+			"max": max,
+		},
+		Format: BetweenRuneFormat,
+	}, MinRune(min), MaxRune(max))
+}
+
 func MustMatch(mustMatch, fieldName string) ValidationRule {
 	return func(value *string, hasError bool) error {
 		if *value != mustMatch {
