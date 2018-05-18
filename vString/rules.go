@@ -11,6 +11,7 @@ func Mandatory() ValidationRule {
 	return func(value *string, hasError bool) error {
 		if "" == *value {
 			return vError.ValidationError{
+				Type:   Type,
 				Data:   nil,
 				Format: MandatoryFormat,
 			}
@@ -39,6 +40,7 @@ func Pattern(pattern *regexp.Regexp) ValidationRule {
 	return func(value *string, hasError bool) error {
 		if !pattern.MatchString(*value) {
 			return vError.ValidationError{
+				Type: Type,
 				Data: map[string]interface{}{
 					"pattern": pattern.String(),
 				},
@@ -54,6 +56,7 @@ func MinRune(min int) ValidationRule {
 	return func(value *string, hasError bool) error {
 		if utf8.RuneCountInString(*value) < min {
 			return vError.ValidationError{
+				Type: Type,
 				Data: map[string]interface{}{
 					"min": min,
 				},
@@ -69,6 +72,7 @@ func MaxRune(max int) ValidationRule {
 	return func(value *string, hasError bool) error {
 		if utf8.RuneCountInString(*value) > max {
 			return vError.ValidationError{
+				Type: Type,
 				Data: map[string]interface{}{
 					"max": max,
 				},
@@ -84,6 +88,7 @@ func MustMatch(mustMatch, fieldName string) ValidationRule {
 	return func(value *string, hasError bool) error {
 		if *value != mustMatch {
 			return vError.ValidationError{
+				Type: Type,
 				Data: map[string]interface{}{
 					"fieldName": fieldName,
 				},

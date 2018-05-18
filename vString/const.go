@@ -1,6 +1,8 @@
 package vString
 
 const (
+	Type = "string"
+
 	MandatoryFormat = "Must not be left empty"
 	PatternFormat   = "Does not match pattern '{{.pattern}}'."
 	MinRuneFormat   = "Must have more than '{{.min}}' characters."
