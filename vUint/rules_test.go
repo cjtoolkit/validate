@@ -1,4 +1,4 @@
-package vInt
+package vUint
 
 import (
 	"errors"
@@ -8,7 +8,7 @@ import (
 )
 
 func TestRules(t *testing.T) {
-	values := func(src string, value int64, hasError bool) (*string, *int64, bool) {
+	values := func(src string, value uint64, hasError bool) (*string, *uint64, bool) {
 		return &src, &value, hasError
 	}
 
@@ -27,7 +27,7 @@ func TestRules(t *testing.T) {
 	})
 
 	t.Run("Optional", func(t *testing.T) {
-		rule := ValidationRule(func(src *string, value *int64, hasError bool) error {
+		rule := ValidationRule(func(src *string, value *uint64, hasError bool) error {
 			return errors.New("I am error")
 		})
 
@@ -93,10 +93,10 @@ func TestRules(t *testing.T) {
 	})
 
 	t.Run("OverrideErrorMsg", func(t *testing.T) {
-		ruleWithError := ValidationRule(func(src *string, value *int64, hasError bool) error {
+		ruleWithError := ValidationRule(func(src *string, value *uint64, hasError bool) error {
 			return errors.New("I am error")
 		})
-		ruleWithNoError := ValidationRule(func(src *string, value *int64, hasError bool) error {
+		ruleWithNoError := ValidationRule(func(src *string, value *uint64, hasError bool) error {
 			return nil
 		})
 

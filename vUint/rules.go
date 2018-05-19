@@ -1,9 +1,9 @@
-package vInt
+package vUint
 
 import "github.com/cjtoolkit/validate/vError"
 
 func Mandatory() ValidationRule {
-	return func(src *string, value *int64, hasError bool) error {
+	return func(src *string, value *uint64, hasError bool) error {
 		if "" == *src {
 			return vError.ValidationError{
 				Type:   Type,
@@ -17,7 +17,7 @@ func Mandatory() ValidationRule {
 }
 
 func Optional(rules ...ValidationRule) ValidationRule {
-	return func(src *string, value *int64, hasError bool) error {
+	return func(src *string, value *uint64, hasError bool) error {
 		if "" == *src {
 			return nil
 		}
@@ -32,8 +32,8 @@ func Optional(rules ...ValidationRule) ValidationRule {
 	}
 }
 
-func DefaultValue(defaultValue int64) ValidationRule {
-	return func(src *string, value *int64, hasError bool) error {
+func DefaultValue(defaultValue uint64) ValidationRule {
+	return func(src *string, value *uint64, hasError bool) error {
 		if "" == *src {
 			*value = defaultValue
 		}
@@ -42,8 +42,8 @@ func DefaultValue(defaultValue int64) ValidationRule {
 	}
 }
 
-func Min(min int64) ValidationRule {
-	return func(src *string, value *int64, hasError bool) error {
+func Min(min uint64) ValidationRule {
+	return func(src *string, value *uint64, hasError bool) error {
 		if *value < min {
 			return vError.ValidationError{
 				Type: Type,
@@ -58,8 +58,8 @@ func Min(min int64) ValidationRule {
 	}
 }
 
-func Max(max int64) ValidationRule {
-	return func(src *string, value *int64, hasError bool) error {
+func Max(max uint64) ValidationRule {
+	return func(src *string, value *uint64, hasError bool) error {
 		if *value > max {
 			return vError.ValidationError{
 				Type: Type,
@@ -74,7 +74,7 @@ func Max(max int64) ValidationRule {
 	}
 }
 
-func Between(min, max int64) ValidationRule {
+func Between(min, max uint64) ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type: Type,
 		Data: map[string]interface{}{
@@ -86,7 +86,7 @@ func Between(min, max int64) ValidationRule {
 }
 
 func OverrideErrorMsg(validationError vError.ValidationError, rules ...ValidationRule) ValidationRule {
-	return func(src *string, value *int64, hasError bool) error {
+	return func(src *string, value *uint64, hasError bool) error {
 		collector := vError.NewErrorCollector()
 		for _, rule := range rules {
 			collector.Collect(rule(src, value, hasError))
@@ -100,8 +100,8 @@ func OverrideErrorMsg(validationError vError.ValidationError, rules ...Validatio
 	}
 }
 
-func Step(step int64) ValidationRule {
-	return func(src *string, value *int64, hasError bool) error {
+func Step(step uint64) ValidationRule {
+	return func(src *string, value *uint64, hasError bool) error {
 		if (*value % step) != 0 {
 			return vError.ValidationError{
 				Type: Type,

@@ -1,7 +1,7 @@
-package vInt
+package vUint
 
 const (
-	Type = "int"
+	Type = "uint"
 
 	NotAnIntFormat  = "{{.value}} is not an integer"
 	MandatoryFormat = "Must not be left empty"

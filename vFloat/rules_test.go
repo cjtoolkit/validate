@@ -1,4 +1,4 @@
-package vInt
+package vFloat
 
 import (
 	"errors"
@@ -8,7 +8,7 @@ import (
 )
 
 func TestRules(t *testing.T) {
-	values := func(src string, value int64, hasError bool) (*string, *int64, bool) {
+	values := func(src string, value float64, hasError bool) (*string, *float64, bool) {
 		return &src, &value, hasError
 	}
 
@@ -27,7 +27,7 @@ func TestRules(t *testing.T) {
 	})
 
 	t.Run("Optional", func(t *testing.T) {
-		rule := ValidationRule(func(src *string, value *int64, hasError bool) error {
+		rule := ValidationRule(func(src *string, value *float64, hasError bool) error {
 			return errors.New("I am error")
 		})
 
@@ -66,13 +66,13 @@ func TestRules(t *testing.T) {
 
 	t.Run("Min", func(t *testing.T) {
 		t.Run("Less", func(t *testing.T) {
-			if Min(5)(values("", 4, false)) == nil {
+			if Min(1.5)(values("", 1.4, false)) == nil {
 				t.Error("Should not be nil")
 			}
 		})
 
 		t.Run("More", func(t *testing.T) {
-			if Min(5)(values("", 6, false)) != nil {
+			if Min(1.5)(values("", 1.6, false)) != nil {
 				t.Error("Should be nil")
 			}
 		})
@@ -80,23 +80,23 @@ func TestRules(t *testing.T) {
 
 	t.Run("Max", func(t *testing.T) {
 		t.Run("Less", func(t *testing.T) {
-			if Max(5)(values("", 4, false)) != nil {
+			if Max(1.5)(values("", 1.4, false)) != nil {
 				t.Error("Should be nil")
 			}
 		})
 
 		t.Run("More", func(t *testing.T) {
-			if Max(5)(values("", 6, false)) == nil {
+			if Max(1.5)(values("", 1.6, false)) == nil {
 				t.Error("Should not be nil")
 			}
 		})
 	})
 
 	t.Run("OverrideErrorMsg", func(t *testing.T) {
-		ruleWithError := ValidationRule(func(src *string, value *int64, hasError bool) error {
+		ruleWithError := ValidationRule(func(src *string, value *float64, hasError bool) error {
 			return errors.New("I am error")
 		})
-		ruleWithNoError := ValidationRule(func(src *string, value *int64, hasError bool) error {
+		ruleWithNoError := ValidationRule(func(src *string, value *float64, hasError bool) error {
 			return nil
 		})
 

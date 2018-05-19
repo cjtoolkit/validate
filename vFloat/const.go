@@ -1,7 +1,7 @@
-package vInt
+package vFloat
 
 const (
-	Type = "int"
+	Type = "float"
 
 	NotAnIntFormat  = "{{.value}} is not an integer"
 	MandatoryFormat = "Must not be left empty"
