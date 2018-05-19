@@ -1,9 +1,8 @@
 package vTime
 
 import (
-	"time"
-
 	"strings"
+	"time"
 
 	"github.com/cjtoolkit/validate/vError"
 )
