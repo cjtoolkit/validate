@@ -46,6 +46,8 @@ func (e *ErrorCollector) Collect(err error) {
 		return
 	}
 
+	e.hasError = true
+
 	switch err := err.(type) {
 	case Errors:
 		e.errs = append(e.errs, err...)
