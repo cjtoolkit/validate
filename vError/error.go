@@ -44,8 +44,8 @@ func NewErrorCollector() *ErrorCollector {
 func (e *ErrorCollector) Collect(err error) {
 	if err != nil {
 		e.hasError = true
-		if err, ok := err.(Errors); ok {
-			e.errs = append(e.errs, err...)
+		if _err, ok := err.(Errors); ok {
+			e.errs = append(e.errs, _err...)
 		} else {
 			e.errs = append(e.errs, err)
 		}
