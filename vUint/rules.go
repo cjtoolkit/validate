@@ -8,7 +8,7 @@ func Mandatory() ValidationRule {
 			return vError.ValidationError{
 				Type:   Type,
 				Data:   nil,
-				Format: MandatoryFormat,
+				Format: MandatoryErrorFormat,
 			}
 		}
 
@@ -50,7 +50,7 @@ func Min(min uint64) ValidationRule {
 				Data: map[string]interface{}{
 					"min": min,
 				},
-				Format: MinFormat,
+				Format: MinErrorFormat,
 			}
 		}
 
@@ -66,7 +66,7 @@ func Max(max uint64) ValidationRule {
 				Data: map[string]interface{}{
 					"max": max,
 				},
-				Format: MaxFormat,
+				Format: MaxErrorFormat,
 			}
 		}
 
@@ -81,7 +81,7 @@ func Between(min, max uint64) ValidationRule {
 			"min": min,
 			"max": max,
 		},
-		Format: BetweenFormat,
+		Format: BetweenErrorFormat,
 	}, Min(min), Max(max))
 }
 
@@ -108,7 +108,7 @@ func Step(step uint64) ValidationRule {
 				Data: map[string]interface{}{
 					"step": step,
 				},
-				Format: StepFormat,
+				Format: StepErrorFormat,
 			}
 		}
 

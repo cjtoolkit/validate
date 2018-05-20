@@ -13,7 +13,7 @@ func Mandatory() ValidationRule {
 			return vError.ValidationError{
 				Type:   Type,
 				Data:   nil,
-				Format: MandatoryFormat,
+				Format: MandatoryErrorFormat,
 			}
 		}
 
@@ -44,7 +44,7 @@ func Pattern(pattern *regexp.Regexp) ValidationRule {
 				Data: map[string]interface{}{
 					"pattern": pattern.String(),
 				},
-				Format: PatternFormat,
+				Format: PatternErrorFormat,
 			}
 		}
 
@@ -60,7 +60,7 @@ func MinRune(min int) ValidationRule {
 				Data: map[string]interface{}{
 					"min": min,
 				},
-				Format: MinRuneFormat,
+				Format: MinRuneErrorFormat,
 			}
 		}
 
@@ -76,7 +76,7 @@ func MaxRune(max int) ValidationRule {
 				Data: map[string]interface{}{
 					"max": max,
 				},
-				Format: MaxRuneFormat,
+				Format: MaxRuneErrorFormat,
 			}
 		}
 
@@ -91,7 +91,7 @@ func BetweenRune(min, max int) ValidationRule {
 			"min": min,
 			"max": max,
 		},
-		Format: BetweenRuneFormat,
+		Format: BetweenRuneErrorFormat,
 	}, MinRune(min), MaxRune(max))
 }
 
@@ -103,7 +103,7 @@ func MustMatch(mustMatch, fieldName string) ValidationRule {
 				Data: map[string]interface{}{
 					"fieldName": fieldName,
 				},
-				Format: MustMatchFormat,
+				Format: MustMatchErrorFormat,
 			}
 		}
 

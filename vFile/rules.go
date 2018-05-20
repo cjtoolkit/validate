@@ -14,7 +14,7 @@ func Mandatory() ValidationRule {
 			return vError.ValidationError{
 				Type:   Type,
 				Data:   nil,
-				Format: MandatoryFormat,
+				Format: MandatoryErrorFormat,
 			}
 		}
 
@@ -68,7 +68,7 @@ func AcceptMime(mimes ...string) ValidationRule {
 			Data: map[string]interface{}{
 				"mimes": mimes,
 			},
-			Format: AcceptMimeFormat,
+			Format: AcceptMimeErrorFormat,
 		}
 	})
 }
@@ -94,7 +94,7 @@ func MaxSize(maxBytes int64) ValidationRule {
 				Data: map[string]interface{}{
 					"maxBytes": maxBytes,
 				},
-				Format: MaxSizeFormat,
+				Format: MaxSizeErrorFormat,
 			}
 		}
 

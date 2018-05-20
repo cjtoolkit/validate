@@ -16,8 +16,6 @@ func validate(format string, src string, value time.Time, rules ...ValidationRul
 
 	collector := vError.NewErrorCollector()
 
-	time.Time{}.String()
-
 	for _, rule := range rules {
 		collector.Collect(rule(formatPtr, srcPtr, valuePtr, collector.HasError()))
 	}
@@ -50,7 +48,7 @@ func validateFromString(src string, location *time.Location, formats []string, r
 	return time.Time{}, vError.ValidationError{
 		Type:   Type,
 		Data:   nil,
-		Format: ParseFormat,
+		Format: ParseErrorFormat,
 	}
 }
 

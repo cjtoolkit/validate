@@ -39,7 +39,7 @@ func ValidateFromString(src string, rules ...ValidationRule) (float64, error) {
 			Data: map[string]interface{}{
 				"value": value,
 			},
-			Format: NotAnIntFormat,
+			Format: NotAnIntErrorFormat,
 		}
 		return value, err
 	}
