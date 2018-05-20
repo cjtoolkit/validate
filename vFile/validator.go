@@ -8,7 +8,7 @@ import (
 
 type ValidationRule func(value *multipart.FileHeader, hasError bool) error
 
-func ValidateFile(file *multipart.FileHeader, rules ...ValidationRule) (*multipart.FileHeader, error) {
+func Validate(file *multipart.FileHeader, rules ...ValidationRule) (*multipart.FileHeader, error) {
 	value := file
 
 	collector := vError.NewErrorCollector()
@@ -20,8 +20,8 @@ func ValidateFile(file *multipart.FileHeader, rules ...ValidationRule) (*multipa
 	return value, collector.GetErrors()
 }
 
-func MustValidateFile(file *multipart.FileHeader, rules ...ValidationRule) *multipart.FileHeader {
-	value, err := ValidateFile(file, rules...)
+func MustValidate(file *multipart.FileHeader, rules ...ValidationRule) *multipart.FileHeader {
+	value, err := Validate(file, rules...)
 	vError.Must(err)
 
 	return value
