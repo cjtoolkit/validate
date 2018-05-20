@@ -75,5 +75,5 @@ func Between(min, max time.Time) ValidationRule {
 			"max": max,
 		},
 		Format: BetweenErrorFormat,
-	})
+	}, Min(min), Max(max))
 }
