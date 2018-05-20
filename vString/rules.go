@@ -125,3 +125,115 @@ func OverrideErrorMsg(validationError vError.ValidationError, rules ...Validatio
 		return nil
 	}
 }
+
+func Alpha() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: AlphaErrorFormat,
+	}, Pattern(regexp.MustCompile(AlphaPattern)))
+}
+
+func AlphaDash() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: AlphaDashErrorFormat,
+	}, Pattern(regexp.MustCompile(AlphaDashPattern)))
+}
+
+func AlphaNumeric() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: AlphaNumericErrorFormat,
+	}, Pattern(regexp.MustCompile(AlphaNumericPattern)))
+}
+
+func CreditCard() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: CreditCardErrorFormat,
+	}, Pattern(regexp.MustCompile(CreditCardPattern)))
+}
+
+func CSSColor() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: CSSColorErrorFormat,
+	}, Pattern(regexp.MustCompile(CSSColorPattern)))
+}
+
+func Email() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: EmailErrorFormat,
+	}, Pattern(regexp.MustCompile(EmailPattern)))
+}
+
+func IP() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: IPErrorFormat,
+	}, Pattern(regexp.MustCompile(IPPattern)))
+}
+
+func IPV4() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: IPV4ErrorFormat,
+	}, Pattern(regexp.MustCompile(IPV4Pattern)))
+}
+
+func IPV6() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: IPV6ErrorFormat,
+	}, Pattern(regexp.MustCompile(IPV6Pattern)))
+}
+
+func URL() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: URLErrorFormat,
+	}, Pattern(regexp.MustCompile(URLPattern)))
+}
+
+func UUID() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: UUIDErrorFormat,
+	}, Pattern(regexp.MustCompile(UUIDPattern)))
+}
+
+func UUID3() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: UUID3ErrorFormat,
+	}, Pattern(regexp.MustCompile(UUID3Pattern)))
+}
+
+func UUID4() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: UUID4ErrorFormat,
+	}, Pattern(regexp.MustCompile(UUID4Pattern)))
+}
+
+func UUID5() ValidationRule {
+	return OverrideErrorMsg(vError.ValidationError{
+		Type:   Type,
+		Data:   nil,
+		Format: UUID5ErrorFormat,
+	}, Pattern(regexp.MustCompile(UUID5Pattern)))
+}
