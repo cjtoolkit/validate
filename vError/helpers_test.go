@@ -49,4 +49,25 @@ func TestCheck(t *testing.T) {
 			Must(errors.New("I am error"))
 		})
 	})
+
+	t.Run("CleanError", func(t *testing.T) {
+		errs := Errors{
+			ValidationError{
+				Type: "abc",
+			},
+			ValidationError{
+				Type: "def",
+			},
+			ValidationError{
+				Type: "abc",
+			},
+			ValidationError{
+				Type: "def",
+			},
+		}
+
+		if cap(CleanError(errs).(Errors)) != 2 {
+			t.Error("Should be 2")
+		}
+	})
 }

@@ -47,3 +47,8 @@ func Must(value string, err error) string {
 	vError.Must(err)
 	return value
 }
+
+func MustMultiple(values []string, err error) []string {
+	vError.Must(err)
+	return values
+}
