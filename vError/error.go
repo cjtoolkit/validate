@@ -21,6 +21,7 @@ func (e ValidationError) bytes() []byte {
 }
 
 func (e ValidationError) Error() string { return string(e.bytes()) }
+
 func (e ValidationError) MarshalJSON() ([]byte, error) {
 	return json.Marshal([]string{string(e.bytes())})
 }
