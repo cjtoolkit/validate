@@ -34,13 +34,13 @@ func ValidateFromString(src string, rules ...ValidationRule) (uint64, error) {
 
 	value, err := strconv.ParseUint(src, 10, 64)
 	if nil != err {
-		err = vError.ValidationError{
+		err = vError.Errors{vError.ValidationError{
 			Type: Type,
 			Data: map[string]interface{}{
 				"value": value,
 			},
 			Format: NotAnIntErrorFormat,
-		}
+		}}
 		return value, err
 	}
 

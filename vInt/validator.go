@@ -1,10 +1,9 @@
 package vInt
 
 import (
+	"sort"
 	"strconv"
 	"strings"
-
-	"sort"
 
 	"github.com/cjtoolkit/validate/vError"
 )
@@ -47,13 +46,13 @@ func ValidateFromString(src string, rules ...ValidationRule) (int64, error) {
 
 	value, err := strconv.ParseInt(src, 10, 64)
 	if nil != err {
-		err = vError.ValidationError{
+		err = vError.Errors{vError.ValidationError{
 			Type: Type,
 			Data: map[string]interface{}{
 				"value": value,
 			},
 			Format: NotAnIntErrorFormat,
-		}
+		}}
 		return value, err
 	}
 

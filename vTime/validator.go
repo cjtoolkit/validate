@@ -45,11 +45,11 @@ func validateFromString(src string, location *time.Location, formats []string, r
 		}
 	}
 
-	return time.Time{}, vError.ValidationError{
+	return time.Time{}, vError.Errors{vError.ValidationError{
 		Type:   Type,
 		Data:   nil,
 		Format: ParseErrorFormat,
-	}
+	}}
 }
 
 func ValidateFromString(src string, location *time.Location, rules ...ValidationRule) (time.Time, error) {

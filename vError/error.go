@@ -2,6 +2,7 @@ package vError
 
 import (
 	"bytes"
+	"encoding/json"
 	"strings"
 	"text/template"
 )
@@ -12,22 +13,30 @@ type ValidationError struct {
 	Format string
 }
 
-func (e ValidationError) Error() string {
+func (e ValidationError) bytes() []byte {
 	buf := &bytes.Buffer{}
 	template.Must(template.New("ValidationError").Parse(e.Format)).Execute(buf, e.Data)
 
-	return buf.String()
+	return buf.Bytes()
+}
+
+func (e ValidationError) Error() string { return string(e.bytes()) }
+func (e ValidationError) MarshalJSON() ([]byte, error) {
+	return json.Marshal([]string{string(e.bytes())})
 }
 
 type Errors []error
 
-func (e Errors) Error() string {
+func (e Errors) strings() []string {
 	strs := []string{}
 	for _, v := range e {
 		strs = append(strs, v.Error())
 	}
-	return strings.Join(strs, "\n")
+	return strs
 }
+
+func (e Errors) Error() string                { return strings.Join(e.strings(), "\n") }
+func (e Errors) MarshalJSON() ([]byte, error) { return json.Marshal(e.strings()) }
 
 type ErrorCollector struct {
 	hasError bool
