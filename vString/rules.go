@@ -111,6 +111,24 @@ func MustMatch(mustMatch, fieldName string) ValidationRule {
 	}
 }
 
+func Matches(matches ...string) ValidationRule {
+	return func(value *string, hasError bool) error {
+		for _, match := range matches {
+			if *value == match {
+				return nil
+			}
+		}
+
+		return vError.ValidationError{
+			Type: Type,
+			Data: map[string]interface{}{
+				"matches": matches,
+			},
+			Format: MatchesErrorFormat,
+		}
+	}
+}
+
 func OverrideErrorMsg(validationError vError.ValidationError, rules ...ValidationRule) ValidationRule {
 	return func(value *string, hasError bool) error {
 		collector := vError.NewErrorCollector()

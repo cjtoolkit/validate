@@ -101,6 +101,20 @@ func TestRules(t *testing.T) {
 		})
 	})
 
+	t.Run("Matches", func(t *testing.T) {
+		t.Run("Match", func(t *testing.T) {
+			if Matches("abc")(values("abc", false)) != nil {
+				t.Error("Should be nil")
+			}
+		})
+
+		t.Run("No Match", func(t *testing.T) {
+			if Matches("abc")(values("def", false)) == nil {
+				t.Error("Should not be nil")
+			}
+		})
+	})
+
 	t.Run("OverrideErrorMsg", func(t *testing.T) {
 		ruleWithError := ValidationRule(func(value *string, hasError bool) error {
 			return errors.New("I am error")
