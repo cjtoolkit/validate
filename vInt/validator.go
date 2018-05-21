@@ -4,6 +4,8 @@ import (
 	"strconv"
 	"strings"
 
+	"sort"
+
 	"github.com/cjtoolkit/validate/vError"
 )
 
@@ -24,6 +26,17 @@ func validate(src string, value int64, rules ...ValidationRule) (int64, error) {
 
 func Validate(value int64, rules ...ValidationRule) (int64, error) {
 	return validate("-", value, rules...)
+}
+
+func ValidateMultiple(values []int64, rules ...ValidationRule) ([]int64, error) {
+	collector := vError.NewErrorCollector()
+
+	for _, value := range values {
+		_, err := Validate(value, rules...)
+		collector.Collect(err)
+	}
+
+	return values, vError.CleanError(collector.GetErrors())
 }
 
 func ValidateFromString(src string, rules ...ValidationRule) (int64, error) {
@@ -47,7 +60,31 @@ func ValidateFromString(src string, rules ...ValidationRule) (int64, error) {
 	return validate(src, value, rules...)
 }
 
+func ValidateFromStringMultiple(srcs []string, rules ...ValidationRule) ([]int64, error) {
+	collector := vError.NewErrorCollector()
+	m := map[int64]bool{}
+
+	for _, src := range srcs {
+		value, err := ValidateFromString(src, rules...)
+		m[value] = true
+		collector.Collect(err)
+	}
+
+	cleanValues := sortInt64{}
+	for key, _ := range m {
+		cleanValues = append(cleanValues, key)
+	}
+	sort.Sort(cleanValues)
+
+	return []int64(cleanValues), vError.CleanError(collector.GetErrors())
+}
+
 func Must(value int64, err error) int64 {
 	vError.Must(err)
 	return value
+}
+
+func MustMultiple(values []int64, err error) []int64 {
+	vError.Must(err)
+	return values
 }

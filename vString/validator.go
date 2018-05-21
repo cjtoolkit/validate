@@ -34,13 +34,13 @@ func ValidateMultiple(values []string, rules ...ValidationRule) ([]string, error
 		collector.Collect(err)
 	}
 
-	cleanValue := []string{}
+	cleanValues := []string{}
 	for key, _ := range m {
-		cleanValue = append(cleanValue, key)
+		cleanValues = append(cleanValues, key)
 	}
-	sort.Strings(cleanValue)
+	sort.Strings(cleanValues)
 
-	return cleanValue, vError.CleanError(collector.GetErrors())
+	return cleanValues, vError.CleanError(collector.GetErrors())
 }
 
 func Must(value string, err error) string {
