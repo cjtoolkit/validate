@@ -115,3 +115,21 @@ func Step(step int64) ValidationRule {
 		return nil
 	}
 }
+
+func Matches(matches ...int64) ValidationRule {
+	return func(src *string, value *int64, hasError bool) error {
+		for _, match := range matches {
+			if *value == match {
+				return nil
+			}
+		}
+
+		return vError.ValidationError{
+			Type: Type,
+			Data: map[string]interface{}{
+				"matches": matches,
+			},
+			Format: MatchesErrorFormat,
+		}
+	}
+}
