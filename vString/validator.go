@@ -21,9 +21,7 @@ func Validate(value string, rules ...ValidationRule) (string, error) {
 	return value, collector.GetErrors()
 }
 
-func MustValidate(value string, rules ...ValidationRule) string {
-	str, err := Validate(value, rules...)
+func Must(value string, err error) string {
 	vError.Must(err)
-
-	return str
+	return value
 }

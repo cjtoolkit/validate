@@ -20,9 +20,7 @@ func Validate(file *multipart.FileHeader, rules ...ValidationRule) (*multipart.F
 	return value, collector.GetErrors()
 }
 
-func MustValidate(file *multipart.FileHeader, rules ...ValidationRule) *multipart.FileHeader {
-	value, err := Validate(file, rules...)
+func Must(file *multipart.FileHeader, err error) *multipart.FileHeader {
 	vError.Must(err)
-
-	return value
+	return file
 }
