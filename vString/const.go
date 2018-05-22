@@ -9,7 +9,7 @@ const (
 	MaxRuneErrorFormat      = "Must have less than '{{.max}}' characters."
 	BetweenRuneErrorFormat  = "Must be between {{.min}} and {{.max}} characters."
 	MustMatchErrorFormat    = "Field does not match '{{.fieldName}}'."
-	MatchesErrorFormat      = "Is not in the list '{{.matches}}'."
+	MatchesErrorFormat      = "Is not in the list, valid matches are '{{.matches|join \"and\"}}'."
 	AlphaErrorFormat        = "Should only be alpha characters."
 	AlphaDashErrorFormat    = "Should only be alpha characters with underscore and dash."
 	AlphaNumericErrorFormat = "Should only be alpha numeric characters."

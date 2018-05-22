@@ -70,4 +70,18 @@ func TestCheck(t *testing.T) {
 			t.Error("Should be 2")
 		}
 	})
+
+	t.Run("join", func(t *testing.T) {
+		if join("and", []string{}) != "" {
+			t.Error("Should be empty")
+		}
+
+		if join("and", []string{"Myself"}) != "Myself" {
+			t.Error("Should be 'Myself'")
+		}
+
+		if join("and", []string{"Me", "Myself", "I"}) != "Me, Myself and I" {
+			t.Error("Me, Myself and I")
+		}
+	})
 }

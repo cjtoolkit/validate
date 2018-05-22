@@ -15,7 +15,8 @@ type ValidationError struct {
 
 func (e ValidationError) bytes() []byte {
 	buf := &bytes.Buffer{}
-	template.Must(template.New("ValidationError").Parse(e.Format)).Execute(buf, e.Data)
+	maps := template.FuncMap{"join": join}
+	template.Must(template.New("ValidationError").Funcs(maps).Parse(e.Format)).Execute(buf, e.Data)
 
 	return buf.Bytes()
 }

@@ -9,5 +9,5 @@ const (
 	MaxErrorFormat       = "Cannot be more than '{{.max}}'."
 	BetweenErrorFormat   = "Must be between '{{.min}}' and '{{.max}}'."
 	StepErrorFormat      = "Must be in step of '{{.step}}'."
-	MatchesErrorFormat   = "Is not in the list '{{.matches}}'."
+	MatchesErrorFormat   = "Is not in the list, valid matches are '{{.matches|join \"and\"}}'."
 )

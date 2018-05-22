@@ -1,5 +1,10 @@
 package vError
 
+import (
+	"fmt"
+	"strings"
+)
+
 func CheckErr(errs ...error) bool {
 	for _, err := range errs {
 		if nil != err {
@@ -55,4 +60,35 @@ func MergeErrors(errs ...error) error {
 	}
 
 	return CleanError(collector.GetErrors())
+}
+
+func join(article string, values interface{}) string {
+	strs := []string{}
+
+	switch values := values.(type) {
+	case []string:
+		strs = values
+	case []int64:
+		for _, value := range values {
+			strs = append(strs, fmt.Sprint(value))
+		}
+	case []float64:
+		for _, value := range values {
+			strs = append(strs, fmt.Sprint(value))
+		}
+	case []uint64:
+		for _, value := range values {
+			strs = append(strs, fmt.Sprint(value))
+		}
+	}
+
+	strsLen := len(strs)
+	switch strsLen {
+	case 0:
+		return ""
+	case 1:
+		return strs[0]
+	}
+
+	return strings.Join(strs[:strsLen-1], ", ") + " " + article + " " + strs[strsLen-1]
 }
