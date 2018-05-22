@@ -1,10 +1,9 @@
 package vFile
 
 import (
+	"io"
 	"mime/multipart"
 	"path"
-
-	"io"
 
 	"github.com/cjtoolkit/validate/vError"
 )

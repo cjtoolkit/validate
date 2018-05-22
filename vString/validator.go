@@ -1,9 +1,8 @@
 package vString
 
 import (
-	"strings"
-
 	"sort"
+	"strings"
 
 	"github.com/cjtoolkit/validate/vError"
 )
