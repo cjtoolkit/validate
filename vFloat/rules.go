@@ -6,6 +6,11 @@ import (
 	"github.com/cjtoolkit/validate/vError"
 )
 
+/*
+Make sure value is set, if not set the rule return a validation error
+
+Note: will only work while validating from string
+*/
 func Mandatory() ValidationRule {
 	return func(src *string, value *float64, hasError bool) error {
 		if "" == *src {
@@ -20,6 +25,11 @@ func Mandatory() ValidationRule {
 	}
 }
 
+/*
+Optional Value, if value is not set, return nil, otherwise go though the validation rules.
+
+Note: will only work while validating from string
+*/
 func Optional(rules ...ValidationRule) ValidationRule {
 	return func(src *string, value *float64, hasError bool) error {
 		if "" == *src {
@@ -36,6 +46,11 @@ func Optional(rules ...ValidationRule) ValidationRule {
 	}
 }
 
+/*
+If the value is not set, set it to the default value.
+
+Note: will only work while validating from string
+*/
 func DefaultValue(defaultValue float64) ValidationRule {
 	return func(src *string, value *float64, hasError bool) error {
 		if "" == *src {
@@ -46,6 +61,9 @@ func DefaultValue(defaultValue float64) ValidationRule {
 	}
 }
 
+/*
+Minimum value, returns error if less than min.
+*/
 func Min(min float64) ValidationRule {
 	return func(src *string, value *float64, hasError bool) error {
 		if *value < min {
@@ -62,6 +80,9 @@ func Min(min float64) ValidationRule {
 	}
 }
 
+/*
+Maximum value, returns error if more than max.
+*/
 func Max(max float64) ValidationRule {
 	return func(src *string, value *float64, hasError bool) error {
 		if *value > max {
@@ -78,6 +99,9 @@ func Max(max float64) ValidationRule {
 	}
 }
 
+/*
+Between Minimum and Maximum value
+*/
 func Between(min, max float64) ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type: Type,
@@ -89,6 +113,9 @@ func Between(min, max float64) ValidationRule {
 	}, Min(min), Max(max))
 }
 
+/*
+Override Error Message
+*/
 func OverrideErrorMsg(validationError vError.ValidationError, rules ...ValidationRule) ValidationRule {
 	return func(src *string, value *float64, hasError bool) error {
 		collector := vError.NewErrorCollector()
@@ -104,6 +131,9 @@ func OverrideErrorMsg(validationError vError.ValidationError, rules ...Validatio
 	}
 }
 
+/*
+Number of step, if value not within number of steps returns an error.
+*/
 func Step(step float64) ValidationRule {
 	return func(src *string, value *float64, hasError bool) error {
 		if math.Mod(*value, step) != 0 {

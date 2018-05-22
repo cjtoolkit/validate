@@ -7,6 +7,9 @@ import (
 	"github.com/cjtoolkit/validate/vError"
 )
 
+/*
+Make sure value is set, if not set the rule return a validation error
+*/
 func Mandatory() ValidationRule {
 	return func(value *string, hasError bool) error {
 		if "" == *value {
@@ -21,6 +24,9 @@ func Mandatory() ValidationRule {
 	}
 }
 
+/*
+Optional Value, if value is not set, return nil, otherwise go though the validation rules.
+*/
 func Optional(rules ...ValidationRule) ValidationRule {
 	return func(value *string, hasError bool) error {
 		if "" == *value {
@@ -36,6 +42,9 @@ func Optional(rules ...ValidationRule) ValidationRule {
 	}
 }
 
+/*
+Validate Pattern
+*/
 func Pattern(pattern *regexp.Regexp) ValidationRule {
 	return func(value *string, hasError bool) error {
 		if !pattern.MatchString(*value) {
@@ -52,6 +61,9 @@ func Pattern(pattern *regexp.Regexp) ValidationRule {
 	}
 }
 
+/*
+Validate minimum number of characters
+*/
 func MinRune(min int) ValidationRule {
 	return func(value *string, hasError bool) error {
 		if utf8.RuneCountInString(*value) < min {
@@ -68,6 +80,9 @@ func MinRune(min int) ValidationRule {
 	}
 }
 
+/*
+Validate maximum number of characters
+*/
 func MaxRune(max int) ValidationRule {
 	return func(value *string, hasError bool) error {
 		if utf8.RuneCountInString(*value) > max {
@@ -84,6 +99,9 @@ func MaxRune(max int) ValidationRule {
 	}
 }
 
+/*
+Validate minimum and maximum number of characters
+*/
 func BetweenRune(min, max int) ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type: Type,
@@ -95,6 +113,9 @@ func BetweenRune(min, max int) ValidationRule {
 	}, MinRune(min), MaxRune(max))
 }
 
+/*
+Must match field.
+*/
 func MustMatch(mustMatch, fieldName string) ValidationRule {
 	return func(value *string, hasError bool) error {
 		if *value != mustMatch {
@@ -111,6 +132,9 @@ func MustMatch(mustMatch, fieldName string) ValidationRule {
 	}
 }
 
+/*
+Check for matches, return error if matches is not found
+*/
 func Matches(matches ...string) ValidationRule {
 	return func(value *string, hasError bool) error {
 		for _, match := range matches {
@@ -129,6 +153,9 @@ func Matches(matches ...string) ValidationRule {
 	}
 }
 
+/*
+Override Error Message
+*/
 func OverrideErrorMsg(validationError vError.ValidationError, rules ...ValidationRule) ValidationRule {
 	return func(value *string, hasError bool) error {
 		collector := vError.NewErrorCollector()
@@ -144,6 +171,9 @@ func OverrideErrorMsg(validationError vError.ValidationError, rules ...Validatio
 	}
 }
 
+/*
+Validate Alpha
+*/
 func Alpha() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,
@@ -152,6 +182,9 @@ func Alpha() ValidationRule {
 	}, Pattern(regexp.MustCompile(AlphaPattern)))
 }
 
+/*
+Validate AlphaDash
+*/
 func AlphaDash() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,
@@ -160,6 +193,9 @@ func AlphaDash() ValidationRule {
 	}, Pattern(regexp.MustCompile(AlphaDashPattern)))
 }
 
+/*
+Validate AlphaNumeric
+*/
 func AlphaNumeric() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,
@@ -168,6 +204,9 @@ func AlphaNumeric() ValidationRule {
 	}, Pattern(regexp.MustCompile(AlphaNumericPattern)))
 }
 
+/*
+Validate CreditCard
+*/
 func CreditCard() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,
@@ -176,6 +215,9 @@ func CreditCard() ValidationRule {
 	}, Pattern(regexp.MustCompile(CreditCardPattern)))
 }
 
+/*
+Validate CSSColor
+*/
 func CSSColor() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,
@@ -184,6 +226,9 @@ func CSSColor() ValidationRule {
 	}, Pattern(regexp.MustCompile(CSSColorPattern)))
 }
 
+/*
+Validate Email
+*/
 func Email() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,
@@ -192,6 +237,9 @@ func Email() ValidationRule {
 	}, Pattern(regexp.MustCompile(EmailPattern)))
 }
 
+/*
+Validate IP
+*/
 func IP() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,
@@ -200,6 +248,9 @@ func IP() ValidationRule {
 	}, Pattern(regexp.MustCompile(IPPattern)))
 }
 
+/*
+Validate IPV4
+*/
 func IPV4() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,
@@ -208,6 +259,9 @@ func IPV4() ValidationRule {
 	}, Pattern(regexp.MustCompile(IPV4Pattern)))
 }
 
+/*
+Validate IPV6
+*/
 func IPV6() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,
@@ -216,6 +270,9 @@ func IPV6() ValidationRule {
 	}, Pattern(regexp.MustCompile(IPV6Pattern)))
 }
 
+/*
+Validate URL
+*/
 func URL() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,
@@ -224,6 +281,9 @@ func URL() ValidationRule {
 	}, Pattern(regexp.MustCompile(URLPattern)))
 }
 
+/*
+Validate UUID
+*/
 func UUID() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,
@@ -232,6 +292,9 @@ func UUID() ValidationRule {
 	}, Pattern(regexp.MustCompile(UUIDPattern)))
 }
 
+/*
+Validate UUID3
+*/
 func UUID3() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,
@@ -240,6 +303,9 @@ func UUID3() ValidationRule {
 	}, Pattern(regexp.MustCompile(UUID3Pattern)))
 }
 
+/*
+Validate UUID4
+*/
 func UUID4() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,
@@ -248,6 +314,9 @@ func UUID4() ValidationRule {
 	}, Pattern(regexp.MustCompile(UUID4Pattern)))
 }
 
+/*
+Validate UUID5
+*/
 func UUID5() ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type:   Type,

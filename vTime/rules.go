@@ -6,6 +6,9 @@ import (
 	"github.com/cjtoolkit/validate/vError"
 )
 
+/*
+Override Error Message
+*/
 func OverrideErrorMsg(validationError vError.ValidationError, rules ...ValidationRule) ValidationRule {
 	return func(format *string, src *string, value *time.Time, hasError bool) error {
 		collector := vError.NewErrorCollector()
@@ -21,6 +24,11 @@ func OverrideErrorMsg(validationError vError.ValidationError, rules ...Validatio
 	}
 }
 
+/*
+Make sure value is set, if not set the rule return a validation error
+
+Note: will only work while validating from string
+*/
 func Mandatory() ValidationRule {
 	return func(format *string, src *string, value *time.Time, hasError bool) error {
 		if *src == "" {
@@ -35,6 +43,9 @@ func Mandatory() ValidationRule {
 	}
 }
 
+/*
+Minimum value, returns error if less than min.
+*/
 func Min(min time.Time) ValidationRule {
 	return func(format *string, src *string, value *time.Time, hasError bool) error {
 		if (*value).Before(min) {
@@ -51,6 +62,9 @@ func Min(min time.Time) ValidationRule {
 	}
 }
 
+/*
+Maximum value, returns error if more than max.
+*/
 func Max(max time.Time) ValidationRule {
 	return func(format *string, src *string, value *time.Time, hasError bool) error {
 		if (*value).After(max) {
@@ -67,6 +81,9 @@ func Max(max time.Time) ValidationRule {
 	}
 }
 
+/*
+Between Minimum and Maximum value
+*/
 func Between(min, max time.Time) ValidationRule {
 	return OverrideErrorMsg(vError.ValidationError{
 		Type: Type,

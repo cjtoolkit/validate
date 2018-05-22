@@ -1,13 +1,17 @@
 package vFile
 
 import (
-	"io"
 	"mime/multipart"
 	"path"
+
+	"io"
 
 	"github.com/cjtoolkit/validate/vError"
 )
 
+/*
+Make sure value is set, if not set the rule return a validation error
+*/
 func Mandatory() ValidationRule {
 	return func(value *multipart.FileHeader, hasError bool) error {
 		if nil == value {
@@ -22,6 +26,9 @@ func Mandatory() ValidationRule {
 	}
 }
 
+/*
+Optional Value, if value is not set, return nil, otherwise go though the validation rules.
+*/
 func Optional(rules ...ValidationRule) ValidationRule {
 	return func(value *multipart.FileHeader, hasError bool) error {
 		if nil == value {
@@ -38,6 +45,9 @@ func Optional(rules ...ValidationRule) ValidationRule {
 	}
 }
 
+/*
+Override Error Message
+*/
 func OverrideErrorMsg(validationError vError.ValidationError, rules ...ValidationRule) ValidationRule {
 	return func(value *multipart.FileHeader, hasError bool) error {
 		collector := vError.NewErrorCollector()
@@ -53,6 +63,9 @@ func OverrideErrorMsg(validationError vError.ValidationError, rules ...Validatio
 	}
 }
 
+/*
+Validate Content Type by list of mime
+*/
 func AcceptMime(mimes ...string) ValidationRule {
 	return Optional(func(value *multipart.FileHeader, hasError bool) error {
 		fileType := value.Header.Get("Content-Type")
@@ -73,6 +86,9 @@ func AcceptMime(mimes ...string) ValidationRule {
 	})
 }
 
+/*
+Validate date by file size.
+*/
 func MaxSize(maxBytes int64) ValidationRule {
 	return Optional(func(value *multipart.FileHeader, hasError bool) error {
 		file, err := value.Open()
