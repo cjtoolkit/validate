@@ -5,6 +5,9 @@ import (
 	"strings"
 )
 
+/*
+Check for errors, return true if there is no error, otherwise false
+*/
 func CheckErr(errs ...error) bool {
 	for _, err := range errs {
 		if nil != err {
@@ -15,6 +18,9 @@ func CheckErr(errs ...error) bool {
 	return true
 }
 
+/*
+Check bools, return true if all is true, otherwise false
+*/
 func CheckBool(boolValues ...bool) bool {
 	for _, boolValue := range boolValues {
 		if !boolValue {
@@ -25,12 +31,18 @@ func CheckBool(boolValues ...bool) bool {
 	return true
 }
 
+/*
+Panic if error is not nil.
+*/
 func Must(err error) {
 	if nil != err {
 		panic(err)
 	}
 }
 
+/*
+Clean out duplicate error message.
+*/
 func CleanError(err error) error {
 	switch err := err.(type) {
 	case Errors:
@@ -53,6 +65,9 @@ func CleanError(err error) error {
 	return err
 }
 
+/*
+Merge Multiple errors into one.
+*/
 func MergeErrors(errs ...error) error {
 	collector := NewErrorCollector()
 	for _, err := range errs {
