@@ -38,6 +38,9 @@ func ValidateMultiple(values []int64, rules ...ValidationRule) ([]int64, error) 
 	return values, vError.CleanError(collector.GetErrors())
 }
 
+/*
+Convert to int64 and than validate.
+*/
 func ValidateFromString(src string, rules ...ValidationRule) (int64, error) {
 	src = strings.TrimSpace(src)
 	if src == "" {
@@ -59,6 +62,9 @@ func ValidateFromString(src string, rules ...ValidationRule) (int64, error) {
 	return validate(src, value, rules...)
 }
 
+/*
+Convert to int64 and than validate. (Multiple)
+*/
 func ValidateFromStringMultiple(srcs []string, rules ...ValidationRule) ([]int64, error) {
 	collector := vError.NewErrorCollector()
 	m := map[int64]bool{}

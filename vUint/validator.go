@@ -26,6 +26,9 @@ func Validate(value uint64, rules ...ValidationRule) (uint64, error) {
 	return validate("-", value, rules...)
 }
 
+/*
+Convert to uint64 and than validate.
+*/
 func ValidateFromString(src string, rules ...ValidationRule) (uint64, error) {
 	src = strings.TrimSpace(src)
 	if src == "" {
