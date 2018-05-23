@@ -155,11 +155,11 @@ Check for matches, return error if matches is not found
 */
 func Matches(matches ...int64) ValidationRule {
 	sort.Sort(sortInt64(matches))
+	matchesLen := len(matches)
 	return func(src *string, value *int64, hasError bool) error {
-		for _, match := range matches {
-			if *value == match {
-				return nil
-			}
+		index := searchInt64s(matches, *value)
+		if index < matchesLen && matches[index] == *value {
+			return nil
 		}
 
 		return vError.ValidationError{

@@ -139,11 +139,11 @@ Check for matches, return error if matches is not found
 */
 func Matches(matches ...string) ValidationRule {
 	sort.Strings(matches)
+	matchesLen := len(matches)
 	return func(value *string, hasError bool) error {
-		for _, match := range matches {
-			if *value == match {
-				return nil
-			}
+		index := sort.SearchStrings(matches, *value)
+		if index < matchesLen && matches[index] == *value {
+			return nil
 		}
 
 		return vError.ValidationError{
