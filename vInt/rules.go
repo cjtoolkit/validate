@@ -157,7 +157,7 @@ func Matches(matches ...int64) ValidationRule {
 	sort.Sort(sortInt64(matches))
 	matchesLen := len(matches)
 	return func(src *string, value *int64, hasError bool) error {
-		index := searchInt64s(matches, *value)
+		index := searchInt64s(matchesLen, matches, *value)
 		if index < matchesLen && matches[index] == *value {
 			return nil
 		}

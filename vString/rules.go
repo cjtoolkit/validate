@@ -141,7 +141,7 @@ func Matches(matches ...string) ValidationRule {
 	sort.Strings(matches)
 	matchesLen := len(matches)
 	return func(value *string, hasError bool) error {
-		index := sort.SearchStrings(matches, *value)
+		index := searchStrings(matchesLen, matches, *value)
 		if index < matchesLen && matches[index] == *value {
 			return nil
 		}
