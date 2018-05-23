@@ -1,6 +1,10 @@
 package vInt
 
-import "github.com/cjtoolkit/validate/vError"
+import (
+	"sort"
+
+	"github.com/cjtoolkit/validate/vError"
+)
 
 /*
 Make sure value is set, if not set the rule return a validation error
@@ -150,6 +154,7 @@ func Step(step int64) ValidationRule {
 Check for matches, return error if matches is not found
 */
 func Matches(matches ...int64) ValidationRule {
+	sort.Sort(sortInt64(matches))
 	return func(src *string, value *int64, hasError bool) error {
 		for _, match := range matches {
 			if *value == match {
