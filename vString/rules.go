@@ -4,8 +4,6 @@ import (
 	"regexp"
 	"unicode/utf8"
 
-	"sort"
-
 	"github.com/cjtoolkit/validate/vError"
 )
 
@@ -138,11 +136,10 @@ func MustMatch(mustMatch, fieldName string) ValidationRule {
 Check for matches, return error if matches is not found
 */
 func Matches(matches ...string) ValidationRule {
-	sort.Strings(matches)
-	matchesLen := len(matches)
+	m := toBoolMap(matches)
+	matches = nil
 	return func(value *string, hasError bool) error {
-		index := searchStrings(matchesLen, matches, *value)
-		if index < matchesLen && matches[index] == *value {
+		if m[*value] {
 			return nil
 		}
 

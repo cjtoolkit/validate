@@ -1,8 +1,6 @@
 package vInt
 
 import (
-	"sort"
-
 	"github.com/cjtoolkit/validate/vError"
 )
 
@@ -154,11 +152,10 @@ func Step(step int64) ValidationRule {
 Check for matches, return error if matches is not found
 */
 func Matches(matches ...int64) ValidationRule {
-	sort.Sort(sortInt64(matches))
-	matchesLen := len(matches)
+	m := toBoolMap(matches)
+	matches = nil
 	return func(src *string, value *int64, hasError bool) error {
-		index := searchInt64s(matchesLen, matches, *value)
-		if index < matchesLen && matches[index] == *value {
+		if m[*value] {
 			return nil
 		}
 
