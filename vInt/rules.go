@@ -1,6 +1,8 @@
 package vInt
 
 import (
+	"sort"
+
 	"github.com/cjtoolkit/validate/vError"
 )
 
@@ -153,7 +155,7 @@ Check for matches, return error if matches is not found
 */
 func Matches(matches ...int64) ValidationRule {
 	m := toBoolMap(matches)
-	matches = nil
+	sort.Sort(sortInt64(matches))
 	return func(src *string, value *int64, hasError bool) error {
 		if m[*value] {
 			return nil
