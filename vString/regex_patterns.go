@@ -1,5 +1,6 @@
 package vString
 
+// Borrowed the rules from https://github.com/thedevsaddam/govalidator
 const (
 	// AlphaPattern represents regular expression for alpha characters
 	AlphaPattern = "^[a-zA-Z]+$"
