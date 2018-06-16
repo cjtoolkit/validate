@@ -81,7 +81,23 @@ func TestCheck(t *testing.T) {
 		}
 
 		if join("and", []string{"Me", "Myself", "I"}) != "Me, Myself and I" {
-			t.Error("Me, Myself and I")
+			t.Error("Should be 'Me, Myself and I'")
+		}
+
+		if join("and", []int64{-4, -5, -6}) != "-4, -5 and -6" {
+			t.Error("Should be '-4, -5 and -6'")
+		}
+
+		if join("and", []float64{1.4, 1.5, 1.6}) != "1.4, 1.5 and 1.6" {
+			t.Error("Should be '1.4, 1.5 and 1.6'")
+		}
+
+		if join("and", []uint64{4, 5, 6}) != "4, 5 and 6" {
+			t.Error("Should be '4, 5 and 6'")
+		}
+
+		if join("and", []int{4, 5, 6}) != "" {
+			t.Error("Should be empty")
 		}
 	})
 }
