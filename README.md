@@ -43,9 +43,9 @@ rules are nicely documented in alphabetical order courtesy of godoc.org. (See do
 
 I also did look at other alternative, such at https://github.com/thedevsaddam/govalidator and
 https://github.com/gorilla/schema , with those alternative you to have specify the validation rules
-as string rather than call, I would actually find that rather awkward, I would rather have the CPU
-being able to assist me with writing validation rules, with simple string it's not really possible
-without the use of IDE plugin, but I prefer to keep the IDE vanilla as possible!
+as string rather than a simple function call, I would actually find that rather awkward, I would rather
+have the CPU being able to assist me with writing validation rules, with simple string it's not really
+possible without the use of IDE plugin, but I prefer to keep the IDE vanilla as possible!
 
 I also benchmark those two and compared them to mime and if you're up for a laugh have a look at the
 [benchmark](https://github.com/CJ-Jackson/scratchpad/tree/master/benchmark/validation), those numbers
