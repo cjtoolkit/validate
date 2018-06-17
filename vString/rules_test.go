@@ -135,21 +135,4 @@ func TestRules(t *testing.T) {
 			}
 		})
 	})
-
-	t.Run("Test for regular expression compilation errors", func(t *testing.T) {
-		Alpha()
-		AlphaDash()
-		AlphaNumeric()
-		CreditCard()
-		CSSColor()
-		Email()
-		IP()
-		IPV4()
-		IPV6()
-		URL()
-		UUID()
-		UUID3()
-		UUID4()
-		UUID5()
-	})
 }
