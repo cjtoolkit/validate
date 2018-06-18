@@ -34,7 +34,7 @@ those following vocabularies.
 * vInt
 * vString
 * vTime
-* vUnit
+* vUint
 
 Than GoLand auto-complete just click in quite nicely.  Anytime I want to validate, all I have to
 think of is V for Vendatta, I couldn't resist.  All the validation rules are closures/lambda,
@@ -47,12 +47,12 @@ as string rather than a simple function call, I would actually find that rather 
 have the CPU being able to assist me with writing validation rules, with simple string it's not really
 possible without the use of IDE plugin, but I prefer to keep the IDE vanilla as possible!
 
-I also benchmark those two and compared them to mine here and are the
+I also benchmark those two and compared them to mine and here are the
 [benchmark](https://github.com/CJ-Jackson/scratchpad/tree/master/benchmark/validation), those numbers
  do not lie! :D 
  
-Also it's nice to have pinpoint accuracy with error message and knowing where to put it on the
-html template, have a close look at the template in the
+Also it's nice to have pinpoint accuracy with error message and knowing where to put it onto
+the html template, have a close look at the template in the
 [example](https://github.com/CJ-Jackson/scratchpad/blob/master/example/validation/main.go), pretty
 cool isn't it?  Multi-value return is actually quite nice when used properly.
 
