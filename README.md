@@ -41,13 +41,13 @@ think of is V for Vendatta, I couldn't resist.  All the validation rules are clo
 therefore the system is very easy to extend on and more importantly easier to test; also all the
 rules are nicely documented in alphabetical order courtesy of godoc.org. (See documentation above)
 
-I also did look at other alternative, such at https://github.com/thedevsaddam/govalidator and
+I also did look at other alternative, such as https://github.com/thedevsaddam/govalidator and
 https://github.com/gorilla/schema , with those alternative you to have specify the validation rules
 as string rather than a simple function call, I would actually find that rather awkward, I would rather
 have the CPU being able to assist me with writing validation rules, with simple string it's not really
 possible without the use of IDE plugin, but I prefer to keep the IDE vanilla as possible!
 
-I also benchmark those two and compared them to mine and if you're up for a laugh have a look at the
+I also benchmark those two and compared them to mine here and are the
 [benchmark](https://github.com/CJ-Jackson/scratchpad/tree/master/benchmark/validation), those numbers
  do not lie! :D 
  
