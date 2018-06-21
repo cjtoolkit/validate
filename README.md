@@ -2,6 +2,26 @@
 
 A simple functional data validation system
 
+## Installation
+
+### Pre Go 1.12 (Currently)
+
+``` sh
+go get -u github.com/cjtoolkit/validate
+```
+
+#### With vgo
+
+``` sh
+vgo get github.com/cjtoolkit/validate
+```
+
+### Go 1.12 (In future)
+
+``` sh
+go get github.com/cjtoolkit/validate
+```
+
 ## Example
 
 * https://github.com/CJ-Jackson/scratchpad/blob/master/example/validation/main.go
