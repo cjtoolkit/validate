@@ -32,6 +32,7 @@ $ go get github.com/cjtoolkit/validate
 
 ## Documentation
 
+* https://godoc.org/github.com/cjtoolkit/validate/vBool
 * https://godoc.org/github.com/cjtoolkit/validate/vError
 * https://godoc.org/github.com/cjtoolkit/validate/vFile
 * https://godoc.org/github.com/cjtoolkit/validate/vFloat
@@ -48,6 +49,7 @@ I needed a validation system that I can easily work on with my IDE of choice, wh
 [GoLand](https://www.jetbrains.com/go/), while working with the system, all I have to remember is
 those following vocabularies.
 
+* vBool
 * vError
 * vFile
 * vFloat

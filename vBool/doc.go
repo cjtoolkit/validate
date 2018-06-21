@@ -1,0 +1,2 @@
+// Bool Validators
+package vBool
