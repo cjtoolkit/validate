@@ -1,6 +1,10 @@
 package vUint
 
-import "github.com/cjtoolkit/validate/vError"
+import (
+	"sort"
+
+	"github.com/cjtoolkit/validate/vError"
+)
 
 /*
 Make sure value is set, if not set the rule return a validation error
@@ -143,5 +147,26 @@ func Step(step uint64) ValidationRule {
 		}
 
 		return nil
+	}
+}
+
+/*
+Check for matches, return error if matches is not found
+*/
+func Matches(matches ...uint64) ValidationRule {
+	m := toBoolMap(matches)
+	sort.Sort(sortUint64(matches))
+	return func(src *string, value *uint64, hasError bool) error {
+		if m[*value] {
+			return nil
+		}
+
+		return vError.ValidationError{
+			Type: Type,
+			Data: map[string]interface{}{
+				"matches": matches,
+			},
+			Format: MatchesErrorFormat,
+		}
 	}
 }

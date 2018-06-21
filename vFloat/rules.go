@@ -3,6 +3,8 @@ package vFloat
 import (
 	"math"
 
+	"sort"
+
 	"github.com/cjtoolkit/validate/vError"
 )
 
@@ -147,5 +149,26 @@ func Step(step float64) ValidationRule {
 		}
 
 		return nil
+	}
+}
+
+/*
+Check for matches, return error if matches is not found
+*/
+func Matches(matches ...float64) ValidationRule {
+	m := toBoolMap(matches)
+	sort.Float64s(matches)
+	return func(src *string, value *float64, hasError bool) error {
+		if m[*value] {
+			return nil
+		}
+
+		return vError.ValidationError{
+			Type: Type,
+			Data: map[string]interface{}{
+				"matches": matches,
+			},
+			Format: MatchesErrorFormat,
+		}
 	}
 }

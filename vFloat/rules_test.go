@@ -115,13 +115,27 @@ func TestRules(t *testing.T) {
 
 	t.Run("Step", func(t *testing.T) {
 		t.Run("In Step", func(t *testing.T) {
-			if Step(2)(values("", 4, false)) != nil {
+			if Step(2.4)(values("", 2.4, false)) != nil {
 				t.Error("Should be nil")
 			}
 		})
 
 		t.Run("Out of Step", func(t *testing.T) {
-			if Step(2)(values("", 5, false)) == nil {
+			if Step(2.4)(values("", 2.5, false)) == nil {
+				t.Error("Should not be nil")
+			}
+		})
+	})
+
+	t.Run("Matches", func(t *testing.T) {
+		t.Run("Match", func(t *testing.T) {
+			if Matches(5.5)(values("", 5.5, false)) != nil {
+				t.Error("Should be nil")
+			}
+		})
+
+		t.Run("No Match", func(t *testing.T) {
+			if Matches(5.5)(values("", 5.6, false)) == nil {
 				t.Error("Should not be nil")
 			}
 		})
