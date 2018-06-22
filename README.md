@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/cjtoolkit/validate.svg?branch=master)](https://travis-ci.com/cjtoolkit/validate)
+
 # CJToolkit Validate
 
 A simple functional data validation system
