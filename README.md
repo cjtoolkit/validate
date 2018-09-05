@@ -1,3 +1,4 @@
+[![GoDoc](https://godoc.org/github.com/cjtoolkit/validate?status.svg)](https://godoc.org/github.com/cjtoolkit/validate)
 [![Build Status](https://travis-ci.com/cjtoolkit/validate.svg?branch=master)](https://travis-ci.com/cjtoolkit/validate)
 
 # CJToolkit Validate
