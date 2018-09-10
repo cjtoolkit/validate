@@ -214,7 +214,7 @@ func CreditCard() ValidationRule {
 		Type:   Type,
 		Data:   nil,
 		Format: CreditCardErrorFormat,
-	}, Pattern(regexp.MustCompile(CreditCardPattern)))
+	}, MaxRune(19), Pattern(regexp.MustCompile(CreditCardPattern)))
 }
 
 /*
@@ -225,7 +225,7 @@ func CSSColor() ValidationRule {
 		Type:   Type,
 		Data:   nil,
 		Format: CSSColorErrorFormat,
-	}, Pattern(regexp.MustCompile(CSSColorPattern)))
+	}, MaxRune(25), Pattern(regexp.MustCompile(CSSColorPattern)))
 }
 
 /*
@@ -236,7 +236,7 @@ func Email() ValidationRule {
 		Type:   Type,
 		Data:   nil,
 		Format: EmailErrorFormat,
-	}, Pattern(regexp.MustCompile(EmailPattern)))
+	}, MaxRune(320), Pattern(regexp.MustCompile(EmailPattern)))
 }
 
 /*
@@ -247,7 +247,7 @@ func IP() ValidationRule {
 		Type:   Type,
 		Data:   nil,
 		Format: IPErrorFormat,
-	}, Pattern(regexp.MustCompile(IPPattern)))
+	}, MaxRune(45), Pattern(regexp.MustCompile(IPPattern)))
 }
 
 /*
@@ -258,7 +258,7 @@ func IPV4() ValidationRule {
 		Type:   Type,
 		Data:   nil,
 		Format: IPV4ErrorFormat,
-	}, Pattern(regexp.MustCompile(IPV4Pattern)))
+	}, MaxRune(15), Pattern(regexp.MustCompile(IPV4Pattern)))
 }
 
 /*
@@ -269,7 +269,7 @@ func IPV6() ValidationRule {
 		Type:   Type,
 		Data:   nil,
 		Format: IPV6ErrorFormat,
-	}, Pattern(regexp.MustCompile(IPV6Pattern)))
+	}, MaxRune(45), Pattern(regexp.MustCompile(IPV6Pattern)))
 }
 
 /*
@@ -280,7 +280,7 @@ func URL() ValidationRule {
 		Type:   Type,
 		Data:   nil,
 		Format: URLErrorFormat,
-	}, Pattern(regexp.MustCompile(URLPattern)))
+	}, MaxRune(2083), Pattern(regexp.MustCompile(URLPattern)))
 }
 
 /*
@@ -291,7 +291,7 @@ func UUID() ValidationRule {
 		Type:   Type,
 		Data:   nil,
 		Format: UUIDErrorFormat,
-	}, Pattern(regexp.MustCompile(UUIDPattern)))
+	}, MaxRune(60), Pattern(regexp.MustCompile(UUIDPattern)))
 }
 
 /*
@@ -302,7 +302,7 @@ func UUID3() ValidationRule {
 		Type:   Type,
 		Data:   nil,
 		Format: UUID3ErrorFormat,
-	}, Pattern(regexp.MustCompile(UUID3Pattern)))
+	}, MaxRune(60), Pattern(regexp.MustCompile(UUID3Pattern)))
 }
 
 /*
@@ -313,7 +313,7 @@ func UUID4() ValidationRule {
 		Type:   Type,
 		Data:   nil,
 		Format: UUID4ErrorFormat,
-	}, Pattern(regexp.MustCompile(UUID4Pattern)))
+	}, MaxRune(60), Pattern(regexp.MustCompile(UUID4Pattern)))
 }
 
 /*
@@ -324,5 +324,5 @@ func UUID5() ValidationRule {
 		Type:   Type,
 		Data:   nil,
 		Format: UUID5ErrorFormat,
-	}, Pattern(regexp.MustCompile(UUID5Pattern)))
+	}, MaxRune(60), Pattern(regexp.MustCompile(UUID5Pattern)))
 }
