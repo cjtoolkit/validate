@@ -122,7 +122,7 @@ func OverrideErrorMsg(validationError vError.ValidationError, rules ...Validatio
 	return func(src *string, value *float64, hasError bool) error {
 		collector := vError.NewErrorCollector()
 		for _, rule := range rules {
-			collector.Collect(rule(src, value, hasError))
+			collector.Collect(rule(src, value, hasError || collector.HasError()))
 		}
 
 		if collector.HasError() {

@@ -51,7 +51,7 @@ func OverrideErrorMsg(validationError vError.ValidationError, rules ...Validatio
 	return func(value *multipart.FileHeader, hasError bool) error {
 		collector := vError.NewErrorCollector()
 		for _, rule := range rules {
-			collector.Collect(rule(value, hasError))
+			collector.Collect(rule(value, hasError || collector.HasError()))
 		}
 
 		if collector.HasError() {

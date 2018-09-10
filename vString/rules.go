@@ -49,7 +49,7 @@ Validate Pattern
 */
 func Pattern(pattern *regexp.Regexp) ValidationRule {
 	return func(value *string, hasError bool) error {
-		if !pattern.MatchString(*value) {
+		if hasError || !pattern.MatchString(*value) {
 			return vError.ValidationError{
 				Type: Type,
 				Data: map[string]interface{}{
@@ -162,7 +162,7 @@ func OverrideErrorMsg(validationError vError.ValidationError, rules ...Validatio
 	return func(value *string, hasError bool) error {
 		collector := vError.NewErrorCollector()
 		for _, rule := range rules {
-			collector.Collect(rule(value, hasError))
+			collector.Collect(rule(value, hasError || collector.HasError()))
 		}
 
 		if collector.HasError() {
