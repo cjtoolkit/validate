@@ -13,7 +13,7 @@ func OverrideErrorMsg(validationError vError.ValidationError, rules ...Validatio
 	return func(format *string, src *string, value *time.Time, hasError bool) error {
 		collector := vError.NewErrorCollector()
 		for _, rule := range rules {
-			collector.Collect(rule(format, src, value, hasError))
+			collector.Collect(rule(format, src, value, hasError || collector.HasError()))
 		}
 
 		if collector.HasError() {

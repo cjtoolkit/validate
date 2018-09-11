@@ -40,7 +40,7 @@ func Optional(rules ...ValidationRule) ValidationRule {
 		collector := vError.NewErrorCollector()
 
 		for _, rule := range rules {
-			collector.Collect(rule(src, value, collector.HasError()))
+			collector.Collect(rule(src, value, hasError || collector.HasError()))
 		}
 
 		return collector.GetErrors()
