@@ -1,5 +1,5 @@
 [![GoDoc](https://godoc.org/github.com/cjtoolkit/validate?status.svg)](https://godoc.org/github.com/cjtoolkit/validate)
-[![Build Status](https://travis-ci.org/cjtoolkit/validate.svg?branch=master)](https://travis-ci.com/cjtoolkit/validate)
+[![Build Status](https://travis-ci.org/cjtoolkit/validate.svg?branch=master)](https://travis-ci.org/cjtoolkit/validate)
 
 # CJToolkit Validate
 
