@@ -2,7 +2,6 @@ package vFloat
 
 import (
 	"math"
-
 	"sort"
 
 	"github.com/cjtoolkit/validate/vError"

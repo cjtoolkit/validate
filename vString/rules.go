@@ -2,9 +2,8 @@ package vString
 
 import (
 	"regexp"
-	"unicode/utf8"
-
 	"sort"
+	"unicode/utf8"
 
 	"github.com/cjtoolkit/validate/vError"
 )
